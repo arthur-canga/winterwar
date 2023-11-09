@@ -52,10 +52,20 @@ function isCollidingWithMap(player) {
             h: TILE_SIZE,
           }
         )
-      ) {
+      )
+      
+      {
         return true;
       }
     }
+  }
+  if (
+    player.x < 0 ||
+    player.x + PLAYER_SIZE > decal2D.length * TILE_SIZE ||
+    player.y < 0 ||
+    player.y + PLAYER_SIZE > decal2D.length * TILE_SIZE
+  ) {
+    return true;
   }
   return false;
 }
