@@ -51,7 +51,9 @@ function isCollidingWithMap(player) {
             h: TILE_SIZE,
           }
         )
-      ) {
+      )
+      
+      {
         return true;
       }
     }
