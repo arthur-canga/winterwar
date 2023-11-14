@@ -22,9 +22,21 @@
     <canvas id="canvas"></canvas>
 
     <button id="mute">mute</button>
-
+    <iframe src="silence.mp3" allow="autoplay" id="audio" hidden>
+    </iframe>
+    <audio autoplay id="snowgo">
+      <source src="snowgo.ogg" type="audio/ogg">
+    </audio>
     <script src="AgoraRTC_N-4.15.0.js"></script>
     <script src="/socket.io/socket.io.js"></script>
     <script type="module" src="/index.js"></script>
+    <script>
+      document.addEventListener('click', musicPlay);
+      function musicPlay() {
+        document.getElementById('snowgo').play();
+        document.removeEventListener('click', musicPlay);
+      }
+
+    </script>
   </body>
 </html>

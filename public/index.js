@@ -20,6 +20,9 @@ const speakerImage = new Image();
 speakerImage.src = "/speaker.png";
 
 const walkSnow = new Audio("walk-snow.mp3");
+const music = new Audio('snowgo.mp3');
+music.loop = true;
+music.play();
 
 const canvasEl = document.getElementById("canvas");
 canvasEl.width = window.innerWidth;
@@ -153,7 +156,7 @@ window.addEventListener("keyup", (e) => {
   } else if (e.key === "a") {
     inputs["left"] = false;
   }
-  if (["a", "s", "w", "d"].includes(e.key)) {
+  if (["a", "s", "w", "d","A","S","W","D"].includes(e.key)) {
     walkSnow.pause();
     walkSnow.currentTime = 0;
   }
@@ -180,7 +183,6 @@ function loop() {
 
   const TILES_IN_ROW = 8;
 
-  // ground
   for (let row = 0; row < groundMap.length; row++) {
     for (let col = 0; col < groundMap[0].length; col++) {
       let { id } = groundMap[row][col];
@@ -200,7 +202,6 @@ function loop() {
     }
   }
 
-  // decals
   for (let row = 0; row < decalMap.length; row++) {
     for (let col = 0; col < decalMap[0].length; col++) {
       let { id } = decalMap[row][col] ?? { id: undefined };

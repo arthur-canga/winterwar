@@ -35,7 +35,6 @@ function isCollidingWithMap(player) {
   for (let row = 0; row < decal2D.length; row++) {
     for (let col = 0; col < decal2D[0].length; col++) {
       const tile = decal2D[row][col];
-
       if (
         tile &&
         isColliding(
@@ -56,6 +55,14 @@ function isCollidingWithMap(player) {
         return true;
       }
     }
+  }
+  if (
+    player.x < 0 ||
+    player.x + PLAYER_SIZE > decal2D.length * TILE_SIZE ||
+    player.y < 0 ||
+    player.y + PLAYER_SIZE > decal2D.length * TILE_SIZE
+  ) {
+    return true;
   }
   return false;
 }
@@ -99,10 +106,17 @@ function tick(delta) {
           (player.y + PLAYER_SIZE / 2 - snowball.y) ** 2
       );
       if (distance <= PLAYER_SIZE / 2) {
-        const randX = Math.floor(Math.random() * 3170);
-        const randY = Math.floor(Math.random() * 3170);
-        player.x = randX;
-        player.y = randY;
+        let notColliding = false
+        let randX,randY
+        while(!notColliding){
+          randX = Math.floor(Math.random() * 100);
+          randY = Math.floor(Math.random() * 100);
+          if(!decal2D[randX][randY]){
+            notColliding = true
+          }
+        }
+        player.x = randX * TILE_SIZE;
+        player.y = randY * TILE_SIZE;
         snowball.timeLeft = -1;
         break;
       }
